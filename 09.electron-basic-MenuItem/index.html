@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>electron-basic-MenuItem</title>
+    </head>
+    <body>
+        <script>
+            const { Menu, MenuItem, BrowserWindow } = require("electron").remote,
+                menu = new Menu(),
+                menuItem1 = new MenuItem({
+                    label: "MenuItem01",
+                    click: () => {
+                        console.log("MenuItem01 click");
+                    },
+                }),
+                menuItem2 = new MenuItem({
+                    label: "MenuItem02",
+                    type: "checkbox",
+                    checked: true,
+                    click: () => {
+                        console.log("MenuItem02 click");
+                    },
+                }),
+                separator = new MenuItem({
+                    type: "separator"
+                });
+
+            menu.append(menuItem1);
+            menu.append(menuItem2);
+
+            window.addEventListener("contextmenu", (event) => {
+                console.log("contextmenu");
+                event.preventDefault();
+                menu.popup(BrowserWindow.getFocusedWindow());
+            });
+
+            menu.insert(1, separator);
+        </script>
+    </body>
+</html>

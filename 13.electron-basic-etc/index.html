@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="btn_win_id" value="mainWindow.id" />
+    <input type="button" id="btn_open_browser" value="open browser" />
+
+    <script>
+        const { remote, shell } = require("electron");
+
+        const btnWinID = document.querySelector("#btn_win_id"),
+            btnOpenBrowser = document.querySelector("#btn_open_browser");
+
+        btnWinID.addEventListener("click", () => {
+            const mainWindow = remote.getCurrentWindow();
+            console.log(mainWindow.id);
+        });
+
+        btnOpenBrowser.addEventListener("click", () => {
+            shell.openExternal("https://github.com");
+        });
+
+        console.log(process.versions);
+        console.log(process.platform);
+        console.log(process.type);
+    </script>
+</body>
+</html>

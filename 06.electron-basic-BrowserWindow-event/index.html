@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>electron-basic-BrowserWindow-event</h2>
+
+    <script>
+        const {remote} = require("electron"),
+            btnHide = document.querySelector("#btn_hide");
+        
+            btnHide.addEventListener("click", () => {
+            const mainWindow = remote.BrowserWindow.getFocusedWindow();
+            mainWindow.hide();
+        });
+    </script>
+</body>
+</html>

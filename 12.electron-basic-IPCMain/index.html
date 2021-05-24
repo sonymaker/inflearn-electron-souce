@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="button" id="btn_send_async" value="send async" />
+        <input type="button" id="btn_send_sync" value="send sync" />
+        <script>
+            const { ipcRenderer } = require("electron"),
+                btnSendAsync = document.querySelector("#btn_send_async"),
+                btnSendSync = document.querySelector("#btn_send_sync");
+
+            btnSendAsync.addEventListener("click", () => {
+                console.log("buttonSendAsync");
+
+                ipcRenderer.send(/*channel 설정*/"send_async_channel", /*보낼 데이터*/"이것은 renderer 프로세스에서 보낸 비동기 메세지입니다.");
+            });
+
+            btnSendSync.addEventListener("click", () => {
+                console.log("buttonSendSync");
+
+                const reply = ipcRenderer.sendSync(/*channel 설정*/"send_sync_channel", /*보낼 데이터*/"이것은 renderer 프로세스에서 보낸 동기 메세지입니다.");
+
+                console.log(reply);
+            });
+
+            ipcRenderer.on("reply_async_channel", (event, message) => {
+                console.log(message);
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+[
+	{
+		"type": "home",
+		"url": "http://github.com",
+		"title": "타이틀"
+	},
+	{
+		"type": "home",
+		"url": "http://github.com",
+		"title": "타이틀"
+	},
+	{
+		"type": "github",
+		"url": "http://github.com",
+		"title": "타이틀"
+	},
+	{
+		"type": "home",
+		"url": "https://www.inflearn.com/course/javascript-%EC%9D%BC%EB%A0%89%ED%8A%B8%EB%A1%A0-%EA%B0%95%EC%A2%8C/lecture/6457?tab=note",
+		"title": "javascript 로 데스크탑 앱을 - 일렉트론 기초 강좌 - 인프런 | 학습 페이지"
+	}
+]

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="button" id="btn_open" value="open" />
+        <input type="button" id="btn_save" value="save" />
+        <input type="button" id="btn_message" value="message" />
+        <input type="button" id="btn_error" value="error" />
+
+        <script>
+            const { dialog } = require("electron").remote,
+                btnOpen = document.querySelector("#btn_open"),
+                btnSave = document.querySelector("#btn_save"),
+                btnMessgae = document.querySelector("#btn_message"),
+                btnError = document.querySelector("#btn_error");
+
+            btnOpen.addEventListener("click", () => {
+                dialog
+                    .showOpenDialog({
+                        filters: [
+                            { name: "Images", extensions: ["jpg", "png"] },
+                        ],
+                        properties: ["openFile", "multiSelections"],
+                    })
+                    .then((result) => {
+                        console.log(result.canceled);
+                        console.log(result.filePaths);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            });
+
+            btnSave.addEventListener("click", () => {
+                dialog
+                    .showSaveDialog({
+                        title: "title",
+                        defaultPath: `${__dirname}/default`,
+                        filters: [{ name: "Images", extensions: ["jpg"] }],
+                    })
+                    .then((result) => {
+                        console.log(result.canceled);
+                        console.log(result.filePath);
+                    });
+            });
+
+            btnMessgae.addEventListener("click", () => {
+                dialog
+                    .showMessageBox({
+                        message: "메세지입니다.",
+                        detail: "디테일입니다.",
+                        buttons: ["First", "Second"],
+                        checkboxLabel: "체크박스",
+                        checkboxChecked: true,
+                    })
+                    .then((result) => {
+                        console.log(result.response);
+                        console.log(result.checkboxChecked);
+                    });
+            });
+
+            btnError.addEventListener("click", () => {
+                dialog.showErrorBox("제목", "내용");
+            });
+        </script>
+    </body>
+</html>

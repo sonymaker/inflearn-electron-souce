@@ -1,0 +1,13 @@
+{
+  "name": "02.electron-basic-BrowserWindow-new",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "clear": "rm -rf node_modules yarn.lock yarn-error.log"
+  },
+  "devDependencies": {
+    "electron": "^12.0.5"
+  }
+}
